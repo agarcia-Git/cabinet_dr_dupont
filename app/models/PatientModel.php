@@ -50,6 +50,24 @@ class PatientModel extends Model {
         ]);
     }
 
+    public function update(Patient $patient) {
+    $stmt = $this->db->prepare('
+        UPDATE patient 
+        SET nom = :nom, prenom = :prenom, email = :email, 
+            telephone = :telephone, date_naissance = :date_naissance, adresse = :adresse
+        WHERE id_patient = :id
+    ');
+    return $stmt->execute([
+        ':nom'            => $patient->getNom(),
+        ':prenom'         => $patient->getPrenom(),
+        ':email'          => $patient->getEmail(),
+        ':telephone'      => $patient->getTelephone(),
+        ':date_naissance' => $patient->getDateNaissance(),
+        ':adresse'        => $patient->getAdresse(),
+        ':id'             => $patient->getId()
+    ]);
+}
+
     public function delete($id) {
         $stmt = $this->db->prepare('DELETE FROM patient WHERE id_patient = :id');
         return $stmt->execute([':id' => $id]);

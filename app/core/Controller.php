@@ -1,7 +1,10 @@
 <?php
 class Controller {
+    protected $db;
+    
     protected function render($view, $data = []) {
         extract($data);
-        require_once 'app/views/' . $view . '.php';
+        $path = $_SERVER['DOCUMENT_ROOT'] . '/Cabinet_Dr_Dupont/app/views/' . $view . '.php';
+        require_once $path;
     }
 }

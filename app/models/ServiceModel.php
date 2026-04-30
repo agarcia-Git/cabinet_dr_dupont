@@ -34,4 +34,34 @@ class ServiceModel extends Model {
         $stmt = $this->db->prepare('DELETE FROM service WHERE id_service = :id');
         return $stmt->execute([':id' => $id]);
     }
+
+    public function findById($id) {
+    $stmt = $this->db->prepare('SELECT * FROM service WHERE id_service = :id');
+    $stmt->execute([':id' => $id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$row) return null;
+    return new Service(
+        $row['id_service'],
+        $row['nom'],
+        $row['description'],
+        $row['duree_minutes'],
+        $row['actif']
+    );
+}
+
+    public function update(Service $service) {
+    $stmt = $this->db->prepare('
+        UPDATE service 
+        SET nom = :nom, description = :description, 
+            duree_minutes = :duree_minutes, actif = :actif
+        WHERE id_service = :id
+    ');
+    return $stmt->execute([
+        ':nom'           => $service->getNom(),
+        ':description'   => $service->getDescription(),
+        ':duree_minutes' => $service->getDureeMinutes(),
+        ':actif'         => $service->isActif(),
+        ':id'            => $service->getId()
+    ]);
+}
 }

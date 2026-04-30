@@ -33,4 +33,32 @@ class ActualiteModel extends Model {
         $stmt = $this->db->prepare('DELETE FROM actualite WHERE id_actualite = :id');
         return $stmt->execute([':id' => $id]);
     }
+
+    public function findById($id) {
+    $stmt = $this->db->prepare('SELECT * FROM actualite WHERE id_actualite = :id');
+    $stmt->execute([':id' => $id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$row) return null;
+    return new Actualite(
+        $row['id_actualite'],
+        $row['titre'],
+        $row['contenu'],
+        $row['image'],
+        $row['date_publication']
+    );
+}
+
+    public function update(Actualite $actualite) {
+    $stmt = $this->db->prepare('
+        UPDATE actualite 
+        SET titre = :titre, contenu = :contenu, image = :image
+        WHERE id_actualite = :id
+    ');
+    return $stmt->execute([
+        ':titre'   => $actualite->getTitre(),
+        ':contenu' => $actualite->getContenu(),
+        ':image'   => $actualite->getImage(),
+        ':id'      => $actualite->getId()
+    ]);
+}
 }
