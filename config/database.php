@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private $host = 'localhost';
-    private $dbname = 'Cabinet_Dr Dupont';
-    private $username = 'root';
-    private $password = '';
+    private $host     = 'mysql-cabinet-dr-dupont.alwaysdata.net';
+    private $dbname   = 'cabinet-dr-dupont_db';
+    private $username = 'cabinet-dr-dupont';
+    private $password = 'password38300';
     private $pdo;
 
     public function getConnection() {

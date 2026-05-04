@@ -16,7 +16,7 @@ class Router {
             $controller = $this->routes[$url]['controller'];
             $method     = $this->routes[$url]['method'];
 
-            $file = 'app/controllers/' . $controller . '.php';
+            $file = __DIR__ . '/../controllers/' . $controller . '.php';
 
             if (file_exists($file)) {
                 require_once $file;
@@ -26,7 +26,7 @@ class Router {
                 die('Contrôleur introuvable : ' . $file);
             }
         } else {
-            require_once 'app/controllers/HomeController.php';
+            require_once __DIR__ . '/../controllers/HomeController.php';
             $obj = new HomeController();
             $obj->index();
         }
