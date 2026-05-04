@@ -4,7 +4,7 @@ class Controller {
     
     protected function render($view, $data = []) {
         extract($data);
-        $path = __DIR__ . '/../../app/views/' . $view . '.php';
+        $path = $_SERVER['DOCUMENT_ROOT'] . '/Cabinet_Dr_Dupont/app/views/' . $view . '.php';
         require_once $path;
     }
 }
