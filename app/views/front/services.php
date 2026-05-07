@@ -16,10 +16,10 @@
                     <i class="bi bi-tooth fs-1 mb-3" style="color:#185FA5;"></i>
                     <h5 class="fw-bold"><?= htmlspecialchars($service->getNom()) ?></h5>
                     <p class="text-muted small"><?= htmlspecialchars($service->getDescription()) ?></p>
-                    <span class="badge mt-2" style="background:#185FA5;">
-                        <i class="bi bi-clock"></i> <?= $service->getDureeMinutes() ?> min
-                    </span>
-                </div>
+                    <span class="badge mt-2" style="background:#185FA5;"><i class="bi bi-clock">
+                         <?= $service->getDureeMinutes() ?> min</span>
+                    
+                    </div>
             </div>
             <?php endforeach; ?>
         </div>
