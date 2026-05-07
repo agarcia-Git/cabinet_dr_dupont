@@ -1,4 +1,7 @@
-<?php include __DIR__ . '/../layouts/header.php'; ?>
+<?php
+/** @var array $services */
+include __DIR__ . '/../layouts/header.php';
+?>
 
 <section class="py-5 text-white text-center" style="background: linear-gradient(135deg, #185FA5, #0d3d6e);">
     <div class="container py-3">
